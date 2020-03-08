@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="dev.blank.topheadline.view.ui.NewsActivity">
+
+    <data>
+        <variable
+            name="converter"
+            type="dev.blank.lawancorona.util.Converter"/>
+        <variable
+            name="kasus"
+            type="dev.blank.lawancorona.data.model.Kasus" />
+    </data>
+
+
+    <LinearLayout
+        android:id="@+id/layoutWilayah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/background_general"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tvWilayah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{kasus.countryRegion}"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="@string/nama_wilayah" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/tvPembaharuanTerakhir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="4"
+            android:text="@{@string/pembaharuan_terakhir_custom(kasus.lastUpdate)}"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            tools:text="@string/pembaharuan_terakhir" />
+
+
+    </LinearLayout>
+
+
+</layout>
