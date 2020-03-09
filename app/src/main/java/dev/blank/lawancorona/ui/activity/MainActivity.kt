@@ -91,8 +91,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == resultWilayahActivity) {
-            if (resultCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == resultWilayahActivity) {
                 setupView()
                 setupViewModel()
                 wilayahViewModel!!.getUpdate()
