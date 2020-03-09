@@ -1,7 +1,6 @@
 package dev.blank.lawancorona.ui.adapter
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -17,7 +16,6 @@ import dev.blank.lawancorona.ui.activity.WilayahActivity
 
 class WilayahDataAdapter(private var wilayahActivity: WilayahActivity) : RecyclerView.Adapter<WilayahDataAdapter.WilayahViewHolder>() {
     private var kasusList: List<Kasus>? = null
-    //private var context: Context? = null
     override fun onCreateViewHolder(
             viewGroup: ViewGroup,
             i: Int
@@ -37,10 +35,16 @@ class WilayahDataAdapter(private var wilayahActivity: WilayahActivity) : Recycle
         wilayahViewHolder.wilayahListItemBinding.kasus = kasus
         wilayahViewHolder.wilayahListItemBinding.root.findViewById<LinearLayout>(R.id.layoutWilayah)
                 .setOnClickListener {
-                    Preferences.setWilayah(wilayahActivity, kasus.countryRegion)
+                    if (kasus.id == -1) {
+                        Preferences.setWilayah(wilayahActivity, "ALL")
+                    } else {
+                        Preferences.setWilayah(wilayahActivity, kasus.countryRegion)
+                    }
+
                     val returnIntent = Intent()
                     wilayahActivity.setResult(Activity.RESULT_OK, returnIntent)
                     wilayahActivity.finish()
+
                 }
     }
 

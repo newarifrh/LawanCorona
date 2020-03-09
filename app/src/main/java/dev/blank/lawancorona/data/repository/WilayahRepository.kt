@@ -28,13 +28,14 @@ class WilayahRepository(private var context: Context) {
     private fun populateKasus(): Kasus {
         val kasus = Kasus()
         kasus.countryRegion = context.getString(R.string.dunia)
+        kasus.id = -1
         kasus.lastUpdate = Converter.getDateTime(System.currentTimeMillis().toString())
 
         return kasus
     }
 
     fun filterWilayah() {
-        if (Preferences.getWilayah(context) != context.getString(R.string.dunia)) {
+        if (Preferences.getWilayah(context) != "ALL") {
             kasusFilter.postValue(listKasus.value!!.single { kasus -> kasus.countryRegion == Preferences.getWilayah(context) })
         }
     }
@@ -58,7 +59,7 @@ class WilayahRepository(private var context: Context) {
                     }
                     listKasus.postValue(dataListKasus)
 
-                    if (Preferences.getWilayah(context) != context.getString(R.string.dunia)) {
+                    if (Preferences.getWilayah(context) != "ALL") {
                         println("Region : ${Preferences.getWilayah(context)}")
                         kasusFilter.postValue(dataListKasus.single { kasus -> kasus.countryRegion == Preferences.getWilayah(context) })
                     }

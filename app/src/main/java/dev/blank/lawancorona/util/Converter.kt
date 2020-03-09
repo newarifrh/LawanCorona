@@ -14,7 +14,13 @@ object Converter {
         }
     }
 
-    fun getEmojiByUnicode(unicode: Int): String? {
-        return String(Character.toChars(unicode))
+    fun getPresentase(sembuh: String?, total: String?): Float {
+        return if (sembuh == null && total == null) {
+            0F
+        } else {
+            val sembuhFloat = sembuh!!.replace(",", "").toFloat()
+            val totalFloat = total!!.replace(",", "").toFloat()
+            (sembuhFloat / totalFloat) * 100
+        }
     }
 }

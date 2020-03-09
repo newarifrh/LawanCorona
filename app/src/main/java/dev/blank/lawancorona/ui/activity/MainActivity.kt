@@ -15,6 +15,8 @@ import dev.blank.lawancorona.viewmodel.main.MainViewModel
 import dev.blank.lawancorona.viewmodel.main.MainViewModelFactory
 import dev.blank.lawancorona.viewmodel.wilayah.WilayahViewModel
 import dev.blank.lawancorona.viewmodel.wilayah.WilayahViewModelFactory
+import java.text.NumberFormat
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -22,6 +24,8 @@ class MainActivity : AppCompatActivity() {
     private var mainViewModel: MainViewModel? = null
     private var wilayahViewModel: WilayahViewModel? = null
     private val resultWilayahActivity: Int = 1
+    private var kasusPositif: String? = "0"
+    private var kasusSembuh: String? = "0"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
@@ -32,8 +36,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
-        activityMainBinding!!.tvWilayah.text = Preferences.getWilayah(this)
-        activityMainBinding!!.tvJudul.text = getString(R.string.daftar_kasus_corona_di_custom, Preferences.getWilayah(this))
+        if (Preferences.getWilayah(this) == "ALL") {
+            activityMainBinding!!.tvWilayah.text = getString(R.string.dunia)
+            activityMainBinding!!.tvJudul.text = getString(R.string.daftar_kasus_corona_di_custom, getString(R.string.dunia))
+        } else {
+            activityMainBinding!!.tvWilayah.text = Preferences.getWilayah(this)
+            activityMainBinding!!.tvJudul.text = getString(R.string.daftar_kasus_corona_di_custom, Preferences.getWilayah(this))
+
+        }
+
         activityMainBinding!!.layoutWilayah.setOnClickListener {
             val intent = Intent(this, WilayahActivity::class.java)
             startActivityForResult(intent, resultWilayahActivity)
@@ -41,24 +52,39 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupViewModel() {
-        if (Preferences.getWilayah(this) == getString(R.string.dunia)) {
+        if (Preferences.getWilayah(this) == "ALL") {
 
 
             mainViewModel!!.totalKasusPositif!!
-                    .observe(this, Observer { kasus -> activityMainBinding!!.tvTotalKasusPositif.text = kasus!!.value })
+                    .observe(this, Observer { kasus ->
+                        activityMainBinding!!.tvTotalKasusPositif.text = kasus!!.value
+                        kasusPositif = kasus.value
+
+                        activityMainBinding!!.tvPresentase.text = "${getString(R.string.presentase_custom, Converter.getPresentase(kasusSembuh, kasusPositif))}%"
+                    })
 
             mainViewModel!!.totalKasusSembuh!!
-                    .observe(this, Observer { kasus -> activityMainBinding!!.tvTotalKasusSembuh.text = kasus!!.value })
+                    .observe(this, Observer { kasus ->
+                        activityMainBinding!!.tvTotalKasusSembuh.text = kasus!!.value
+                        kasusSembuh = kasus.value
+
+                        activityMainBinding!!.tvPresentase.text = "${getString(R.string.presentase_custom, Converter.getPresentase(kasusSembuh, kasusPositif))}%"
+
+                    })
 
             mainViewModel!!.totalKasusMeninggal!!
                     .observe(this, Observer { kasus -> activityMainBinding!!.tvTotalKasusMeninggal.text = kasus!!.value })
+
+
             activityMainBinding!!.tvPembaharuanTerakhir.text = getString(R.string.pembaharuan_terakhir_custom, Converter.getDateTime(System.currentTimeMillis().toString()))
         } else {
             wilayahViewModel!!.kasusFilter!!.observe(this, Observer { kasus ->
-                activityMainBinding!!.tvTotalKasusPositif.text = kasus!!.confirmed!!.toString()
-                activityMainBinding!!.tvTotalKasusSembuh.text = kasus.recovered!!.toString()
-                activityMainBinding!!.tvTotalKasusMeninggal.text = kasus.deaths!!.toString()
+                activityMainBinding!!.tvTotalKasusPositif.text = NumberFormat.getNumberInstance(Locale.US).format(kasus.confirmed!!)
+                activityMainBinding!!.tvTotalKasusSembuh.text = NumberFormat.getNumberInstance(Locale.US).format(kasus.recovered!!)
+                activityMainBinding!!.tvTotalKasusMeninggal.text = NumberFormat.getNumberInstance(Locale.US).format(kasus.deaths!!)
                 activityMainBinding!!.tvPembaharuanTerakhir.text = getString(R.string.pembaharuan_terakhir_custom, kasus.lastUpdate.toString())
+
+                activityMainBinding!!.tvPresentase.text = "${getString(R.string.presentase_custom, Converter.getPresentase(kasus.recovered.toString(), kasus.confirmed.toString()))}%"
             })
         }
     }
@@ -70,8 +96,6 @@ class MainActivity : AppCompatActivity() {
                 setupView()
                 setupViewModel()
                 wilayahViewModel!!.getUpdate()
-            } else {
-                println("CANCEL")
             }
         }
 

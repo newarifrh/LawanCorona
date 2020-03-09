@@ -3,8 +3,8 @@ package dev.blank.lawancorona.viewmodel.main
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import dev.blank.lawancorona.data.repository.MainRepository
 import dev.blank.lawancorona.data.model.TotalKasus
+import dev.blank.lawancorona.data.repository.MainRepository
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
     var repository: MainRepository = MainRepository()
@@ -17,6 +17,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         totalKasusPositif = repository.totalKasusPositif
         totalKasusSembuh = repository.totalKasusSembuh
         totalKasusMeninggal = repository.totalKasusMeninggal
+
     }
 
 
