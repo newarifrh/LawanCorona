@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.activity.MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -81,6 +81,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/constraintLayout"
             android:baselineAligned="false"
             android:weightSum="3"
 
@@ -285,11 +286,24 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvPembaharuanTerakhir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout"
+            android:layout_margin="10dp"
+            android:ellipsize="end"
+            android:maxLines="4"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            tools:text="@string/pembaharuan_terakhir" />
+
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_alignParentBottom="true"
+
             android:orientation="horizontal"
             android:weightSum="2"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -305,11 +319,12 @@
                 android:id="@+id/tvDatadBy"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:layout_weight="1"
-                android:textStyle="bold"
                 android:gravity="center"
                 android:text="@string/data_oleh_universitas_johns_hopkins"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="0dp"
@@ -320,6 +335,6 @@
         </LinearLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
 
 </layout>
