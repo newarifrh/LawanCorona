@@ -33,7 +33,7 @@ class WilayahRepository(private var context: Context) {
         return kasus
     }
 
-    public fun filterWilayah() {
+    fun filterWilayah() {
         if (Preferences.getWilayah(context) != context.getString(R.string.dunia)) {
             kasusFilter.postValue(listKasus.value!!.single { kasus -> kasus.countryRegion == Preferences.getWilayah(context) })
         }

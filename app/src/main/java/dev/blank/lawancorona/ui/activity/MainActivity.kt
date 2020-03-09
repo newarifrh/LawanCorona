@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import dev.blank.lawancorona.R
 import dev.blank.lawancorona.data.local.Preferences
 import dev.blank.lawancorona.databinding.ActivityMainBinding
+import dev.blank.lawancorona.util.Converter
 import dev.blank.lawancorona.viewmodel.main.MainViewModel
 import dev.blank.lawancorona.viewmodel.main.MainViewModelFactory
 import dev.blank.lawancorona.viewmodel.wilayah.WilayahViewModel
@@ -51,11 +52,13 @@ class MainActivity : AppCompatActivity() {
 
             mainViewModel!!.totalKasusMeninggal!!
                     .observe(this, Observer { kasus -> activityMainBinding!!.tvTotalKasusMeninggal.text = kasus!!.value })
+            activityMainBinding!!.tvPembaharuanTerakhir.text = getString(R.string.pembaharuan_terakhir_custom, Converter.getDateTime(System.currentTimeMillis().toString()))
         } else {
             wilayahViewModel!!.kasusFilter!!.observe(this, Observer { kasus ->
                 activityMainBinding!!.tvTotalKasusPositif.text = kasus!!.confirmed!!.toString()
                 activityMainBinding!!.tvTotalKasusSembuh.text = kasus.recovered!!.toString()
                 activityMainBinding!!.tvTotalKasusMeninggal.text = kasus.deaths!!.toString()
+                activityMainBinding!!.tvPembaharuanTerakhir.text = getString(R.string.pembaharuan_terakhir_custom, kasus.lastUpdate.toString())
             })
         }
     }
