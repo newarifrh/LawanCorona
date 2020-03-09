@@ -10,7 +10,7 @@
     <string name="nama_wilayah">Region Name</string>
     <string name="pembaharuan_terakhir">Last Update</string>
     <string name="pembaharuan_terakhir_custom">Last Update : %1$s</string>
-    <string name="daftar_kasus_corona_di_custom">List of Corona Cases \nIn %1$s</string>
+    <string name="daftar_kasus_corona_di_custom">List of Corona Cases In %1$s</string>
     <string name="data_oleh_universitas_johns_hopkins">Data by Johns Hopkins University</string>
     <string name="presentase_sembuh">Percentage of Recovery</string>
     <string name="presentase_custom" translatable="false">%1$.2f</string>

@@ -9,7 +9,7 @@
     <string name="nama_wilayah">Nama Wilayah</string>
     <string name="pembaharuan_terakhir">Pembaharuan Terakhir</string>
     <string name="pembaharuan_terakhir_custom">Pembaharuan Terakhir : %1$s</string>
-    <string name="daftar_kasus_corona_di_custom">Daftar Kasus Corona\nDi %1$s</string>
+    <string name="daftar_kasus_corona_di_custom">Daftar Kasus Corona Di %1$s</string>
     <string name="data_oleh_universitas_johns_hopkins">Data oleh Universitas Johns Hopkins</string>
     <string name="presentase_sembuh">Presentase Kesembuhan</string>
 
