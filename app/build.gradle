@@ -47,7 +47,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
@@ -66,26 +65,13 @@ dependencies {
     //DataBinding
     kapt 'com.android.databinding:compiler:3.1.4'
 
-    //Gson
-    implementation 'com.google.code.gson:gson:2.8.6'
-
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
-
-    //Glide
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     //Lifecycle
     def lifecycle_version = "2.2.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
-
-    //Room
-    def room_version = "2.2.4"
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    //implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    //implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    //implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 }
