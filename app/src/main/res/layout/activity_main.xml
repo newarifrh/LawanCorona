@@ -43,7 +43,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center"
-                    android:contentDescription="@string/total_positif"
+                    android:contentDescription="@string/nama_wilayah"
                     android:src="@drawable/ic_world" />
 
                 <TextView
@@ -213,7 +213,7 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
-                        android:contentDescription="@string/total_positif"
+                        android:contentDescription="@string/total_meninggal"
                         android:src="@drawable/ic_cry"
 
 
@@ -289,7 +289,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1.2"
-                android:background="@drawable/background_country"
+                android:background="@drawable/background_general"
                 android:orientation="vertical"
                 android:padding="10dp">
 
@@ -298,8 +298,8 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:contentDescription="@string/total_sembuh"
-                    android:src="@drawable/ic_statistics"
+                    android:contentDescription="@string/presentase_sembuh"
+                    android:src="@drawable/ic_progress"
 
 
                     />
